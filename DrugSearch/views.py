@@ -13,7 +13,7 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
     # queryset = DrugCountry.objects.all()
     # serializer_class = DrugCountrySerializer
 
-    imgUrl = 'D:/Users/User/Desktop/SE_IMG/'  # 圖片儲存路徑
+    imgUrl = 'StatisticsIMG/'  # 圖片儲存路徑，修改成相對路徑
     plt.figure(figsize=(12, 6))  # 設定畫布的尺寸
 
     # 畫圖

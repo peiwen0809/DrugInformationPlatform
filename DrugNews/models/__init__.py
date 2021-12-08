@@ -1,0 +1,1 @@
+from DrugNews.models.Newsmodel import *

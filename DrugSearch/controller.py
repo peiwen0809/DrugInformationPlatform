@@ -47,14 +47,21 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         #取出年份、人數的陣列
         yearArr = []
         numArr = []
+        response = []  # 211210-001 修改為回傳實際資料，由前端畫圖
         for d in serializer.data:
             yearArr.append(str(d['year']))
             numArr.append(d['num'])
+
+            # 211210-001 修改為回傳實際資料，由前端畫圖
+            num_of_people = {"year":str(d['year']),"num":d['num']}
+            response.append(num_of_people)
         # 畫圖
         plt.plot(yearArr, numArr, 'r')
         imgName = "country_year_num.png"
         self.drawPlot(imgName)
-        return JsonResponse({'id':country_id,'img':self.imgUrl + imgName}, safe=False)  # 回傳圖片路徑
+
+        # return JsonResponse({'id':country_id,'img':self.imgUrl + imgName}, safe=False)  # 回傳圖片路徑
+        return JsonResponse({'data':response}, safe=False)  # 211210-001 修改為回傳實際資料，由前端畫圖
         # return JsonResponse(serializer.data,safe=False)  # 為了允許非 dict 對像被序列化，將安全參數設置為 False
 
     # /DIP/DrugIntro/getAgeNum/
@@ -65,6 +72,12 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         country_id = request.data['id']
         ageNum = DrugAge.ageNum(country_id=country_id)
         ageSet = {}  # 各年齡層人數 {"0-19":{"num":[123,456],"year":[2019,2020]},"20-29":{"num":[123,456],"year":[2019,2020]},...}
+        # 211210-001 修改為回傳實際資料，由前端畫圖
+        response = []
+        for r in ageNum:
+            num_of_people = {"year": str(r.year), "num": r.num, "age": r.age_range}
+            response.append(num_of_people)
+
         # 將結果取出，存放到特定物件
         for r in ageNum:
             if r.age_range in ageSet.keys():  # 如果這個年齡層已經有資料了，將資料加入原本的array
@@ -79,16 +92,15 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # serializer = DrugAgeSerializer(ageNum, many=True)  # many=true means queryset 包含多個項目（項目列表）
         # if len(serializer.data) == 0:  # TODO 錯誤訊息的格式
         #     return JsonResponse({"sucecss": False, "desc": "No drug found"})
-        # print(serializer.data)
 
         # 畫圖
         for key in ageSet:
             plt.plot(ageSet[key].get("year"), ageSet[key].get("num"))
-        # plt.legend(ageSet.keys())  # 圖例說明
         imgName = "age_num.png"
         self.drawPlot(imgName, ageSet.keys())
-        return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
-                            safe=False)  # 回傳圖片路徑
+        # return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
+        #                     safe=False)  # 回傳圖片路徑
+        return JsonResponse({"data": response}, safe=False)  # 211210-001 修改為回傳實際資料，由前端畫圖
         # return JsonResponse(serializer.data,safe=False)  # 為了允許非 dict 對像被序列化，將安全參數設置為 False
 
 
@@ -102,6 +114,12 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # serializer = DrugGenderSerializer(genderNum, many=True)  # many=true means queryset 包含多個項目（項目列表）
         # if len(serializer.data) == 0:  # TODO 錯誤訊息的格式
         #     return JsonResponse({"sucecss": False, "desc": "No drug found"})
+
+        # 211210-001 修改為回傳實際資料，由前端畫圖
+        response = []
+        for r in genderNum:
+            num_of_people = {"year": str(r.year), "num": r.num, "gender": r.gender}
+            response.append(num_of_people)
 
         genderSet = {}  # 各性別人數 {"男":{"num":[123,456],"year":[2019,2020]},"女":{"num":[123,456],"year":[2019,2020]}}
         # 將結果取出，存放到特定物件
@@ -118,16 +136,16 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # serializer = DrugAgeSerializer(ageNum, many=True)  # many=true means queryset 包含多個項目（項目列表）
         # if len(serializer.data) == 0:  # TODO 錯誤訊息的格式
         #     return JsonResponse({"sucecss": False, "desc": "No drug found"})
-        # print(serializer.data)
-
         # 畫圖
         for key in genderSet:
             plt.plot(genderSet[key].get("year"), genderSet[key].get("num"))
         # plt.legend(genderSet.keys())  # 圖例說明
         imgName = "gender_num.png"
         self.drawPlot(imgName, genderSet.keys())
-        return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
-                            safe=False)  # 回傳圖片路徑
+
+        # return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
+        #                     safe=False)  # 回傳圖片路徑
+        return JsonResponse({"data": response}, safe=False)   # 211210-001 修改為回傳實際資料，由前端畫圖
         # return JsonResponse(serializer.data,safe=False)  # 為了允許非 dict 對像被序列化，將安全參數設置為 False
 
 
@@ -138,6 +156,13 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # {"id":1}
         country_id = request.data['id']
         drugTypeNum = DrugType.drugTypeNum(country_id=country_id)
+
+        # 211210-001 修改為回傳實際資料，由前端畫圖
+        response = []
+        for r in drugTypeNum:
+            num_of_people = {"year": str(r.year), "num": r.num, "type": r.ch_name}
+            response.append(num_of_people)
+
         drugTypeSet = {}  # 各毒品種類人數 {"大麻":{"num":[123,456],"year":[2019,2020]},"海洛因":{"num":[123,456],"year":[2019,2020]}}
         # 將結果取出，存放到特定物件
         for r in drugTypeNum:
@@ -153,7 +178,6 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # serializer = DrugAgeSerializer(ageNum, many=True)  # many=true means queryset 包含多個項目（項目列表）
         # if len(serializer.data) == 0:  # TODO 錯誤訊息的格式
         #     return JsonResponse({"sucecss": False, "desc": "No drug found"})
-        # print(serializer.data)
 
         # 畫圖
         for key in drugTypeSet:
@@ -161,6 +185,8 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # plt.legend(drugTypeSet.keys())  # 圖例說明
         imgName = "drug_type_num.png"
         self.drawPlot(imgName, drugTypeSet.keys())
-        return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
-                            safe=False)  # 回傳圖片路徑
+        # print(drugTypeSet)
+        # return JsonResponse({'id': country_id, 'img': self.imgUrl + imgName},
+        #                     safe=False)  # 回傳圖片路徑
+        return JsonResponse({"data": response}, safe=False)   # 211210-001 修改為回傳實際資料，由前端畫圖
         # return JsonResponse(serializer.data,safe=False)  # 為了允許非 dict 對像被序列化，將安全參數設置為 False

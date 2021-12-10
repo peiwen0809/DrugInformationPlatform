@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from DrugIntro.views import DrugIntroViewSet
-from DrugSearch.views import DrugSearchViewSet
+from DrugSearch.controller import DrugSearchViewSet
 from django.conf.urls import url
 from django.urls import path, include
+from DrugInformationPlatform.adapter import *
 from rest_framework.urlpatterns import format_suffix_patterns
 
 router = DefaultRouter()
@@ -29,6 +30,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^DIP/', include(router.urls)),  # DIP：Drug Information Platform
     path('news/',include('DrugNews.urls')),
+    path('', index, name='frontpage'),  # 這裡的name會對應到html跳轉網址的部分
+    path('Searchview/',include('DrugSearch.urls')),
+
+    path('Mgrsearchview/', Mgrsearchview, name='Mgrsearchview'),
+    path('Druginfolist/', Druginfolist, name='Druginfolist'),
+    path('Druginfoview/', Druginfoview, name='Druginfoview'),
+    path('login/', login, name='login'),
+
+
 ]
 # 211208-001 似乎會跟router衝突
 # urlpatterns = format_suffix_patterns(urlpatterns)

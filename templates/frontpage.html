@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{%  load static %}
+<html>
+	<head>
+		<title>No Sidebar - TXT by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+
+
+			<!-- Nav -->
+			<nav id="nav">
+                <ul>
+                    <li class="current" ><a href="{% url 'frontpage' %}">首頁</a></li>
+                    <li><a href="{% url 'Newsview' %}">新聞查看</a></li>
+                    <li><a href="{% url 'Searchview' %}">統計資料</a></li>
+                    <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
+                    <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li>
+                    <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li>
+                    <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+
+					<!-- <li class="current" ><a href="frontpage.html">首頁</a></li>
+                    <li><a href="Newsview.html">新聞查看</a></li>
+                    <li><a href="Searchview.html">統計資料</a></li>
+                    <li><a href="Druginfolist.html">毒品介紹</a></li>
+                    <li ><a href="Mgrnewsview.html">新聞管理</a></li>
+                    <li><a href="Mgrsearchview.html">統計資料管理</a></li>
+                    <li><a class="btn" href="login.html">登入</a></li> -->
+                </ul>
+            </nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										
+											<article class="box page-content">
+
+												<header>
+													<h2>毒品資訊</h2>
+													<p>亞洲各國毒品統計資料查詢</p>
+												
+												</header>
+												<section>
+												
+												</section>
+												<section>
+													<span class="flagspan" ><img class="flagimage" src="{% static 'images/tw.png'%}"></span>
+													<span class="flagspan" ><img class="flagimage" src="{% static 'images/sin.png'%}"></span>
+													<span class="flagspan"><img class="flagimage" src="{% static 'images/ma.png'%}"></span>
+												</section>																
+											</article>
+										
+
+								</div>
+							</div>
+							<div class="col-12">
+
+								<!-- Features -->
+									<section class="box features">
+									
+										
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

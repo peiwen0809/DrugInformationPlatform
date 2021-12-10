@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+<head>
+    <title>Right Sidebar - TXT by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+
+
+        <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="{% url 'frontpage' %}">首頁</a></li>
+					<li><a href="{% url 'Newsview' %}">新聞查看</a></li>
+                    <li><a href="{% url 'Searchview' %}">統計資料</a></li>
+                    <li class="current"><a href="#">毒品介紹</a></li>
+                    <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li>
+                    <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li>
+                    <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+                </ul>
+            </nav>
+
+        <!-- Main -->
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content">
+
+                            <!-- Content -->
+                            <article class="box page-content">
+
+                                <header>
+                                    <h2>大麻</h2>                                        
+                                </header>
+
+                                <section>
+                                    <span ><img class="drugimage" src="{% static 'images/weed1.jpeg' %}"></span>
+                                    <span ><img class="drugimage" src="{% static 'images/weed2.jpeg' %}"></span>
+                                    <span ><img class="drugimage" src="{% static 'images/weed3.jpeg' %}"></span>
+                                </section>
+                                <section>
+                                    <p>
+                                        This is <strong>大麻</strong>, yet another free responsive site template designed by
+                                        <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net">HTML5 UP</a>. It's released under the
+                                        <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for
+                                        whatever you're working on (personal or commercial), just be sure to give us credit for the design.
+                                        That's basically it :)
+                                    </p>
+                                </section>                                                              
+                            </article>
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <!-- Features -->
+                            <section class="box features">
+                            
+                                
+                            </section>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+            <footer id="footer">
+
+            </footer>
+
+    </div>
+
+    <!-- Scripts -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'assets/js/browser.min.js' %}"></script>
+        <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

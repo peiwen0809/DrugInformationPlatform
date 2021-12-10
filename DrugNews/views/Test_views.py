@@ -21,3 +21,10 @@ def get_news(request):
     n=new(title=response[i]['title'],link=response[i]['url'])
     n.save()
   return HttpResponse('successful')
+
+def Mgrnewsview(request):
+    return render(request, 'Mgrnewsview.html')
+
+
+def Newsview(request):
+  return render(request, 'Newsview.html')

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+    <head>
+        <title>Right Sidebar - TXT by HTML5 UP</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+            <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
+            <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+    </head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+
+
+			<!-- Nav -->
+			<nav id="nav">
+                <ul>
+                    <!-- <li  ><a href="frontpage.html">首頁</a></li> -->
+					<li ><a href="{% url 'frontpage' %}">首頁</a></li>
+					<li><a href="{% url 'Newsview' %}">新聞查看</a></li>
+                    <li class="current"><a href="#">統計資料</a></li>
+                    <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
+                    <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li>
+                    <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li>
+                    <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+
+                    <!-- <li><a href="Newsview.html">新聞查看</a></li>
+                    <li class="current"><a href="#">統計資料</a></li>
+                    <li><a href="Druginfolist.html">毒品介紹</a></li>
+                    <li ><a href="Mgrnewsview.html">新聞管理</a></li>
+                    <li><a href="Mgrsearchview.html">統計資料管理</a></li>
+                    <li><a class="btn" href="login.html">登入</a></li> -->
+                </ul>
+            </nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+									<!-- Content -->
+											<article class="box page-content">
+
+												<header>
+													<h2>統計資料查詢</h2>
+												
+												</header>
+                                                    <section>
+														<div style="display: flex;">
+
+															<div ><span class="flagspan_search" style="margin-top :5px;" ><img class="flagimage" src="{% static 'images/tw.png'%}" style="width: 150px; height: 100px;
+																padding:0px;"></span>
+															</div>    
+														</div>
+														<div style=" padding: 60px;">
+															<div style="display:flex;">
+                                                                <button style="margin-right: 70px;" onclick="callApi('getCountryYearNum',1)">總人數</button>
+																<button style="margin-right: 70px;" onclick="callApi('getAgeNum',1)">年齡</button>
+																<button style="margin-right: 70px;" onclick="callApi('getGenderNum',1)">性別</button>
+																<button style="margin-right: 70px;" onclick="callApi('getDrugTypeNum',1)">種類</button>
+																<!-- <button style="margin-right: 70px;">總人數</button>
+																<button style="margin-right: 70px;">年齡</button>
+																<button style="margin-right: 70px;">性別</button>
+																<button style="margin-right: 70px;">種類</button> -->
+															</div>
+															
+	
+														</div>
+                                                    <ul>
+                                                    <!-- 折線圖 -->
+														<span class="flagspan" >
+															<div id="canvas-holder">
+																<canvas id="chart-area"></canvas>
+															</div>
+														</span>                                                    
+                                                    </ul>
+                                                    
+                                                    </section>		
+                                                    <section>
+                                                        
+                                                    </section>														
+															
+											</article>
+										
+
+								</div>
+							</div>
+							<div class="col-12">
+
+								<!-- Features -->
+									<section class="box features">
+									
+										
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+		<!--折線圖-->
+			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+			<script src="{% static 'assets/js/piechart.js' %}"></script>
+
+
+	</body>
+</html>

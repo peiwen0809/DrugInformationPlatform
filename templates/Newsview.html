@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+   
+        <head>
+            <title>Right Sidebar - TXT by HTML5 UP</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+        </head>
+        <body class="is-preload">
+            <div id="page-wrapper">
+    
+    
+    
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="{% url 'frontpage' %}">首頁</a></li>
+                        <li class="current"><a href="#">新聞查看</a></li>
+                        <li><a href="{% url 'Searchview' %}">統計資料</a></li>
+                        <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
+                        <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li>
+                        <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li>
+                        <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+                    </ul>
+                </nav>
+    
+                <!-- Main -->
+                    <section id="main">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="content">
+                                        <!-- Content -->             
+                                            <article class="box page-content">
+                                                <ul class="divided">
+                                                    <li>
+                                                        <header><h2>相關新聞</h2></header>
+                                                        <section>
+                                                            <article class="box post-summary">
+                                                                <ul class="meta">
+                                                                    <li ><h4>新聞標題A</h4></li>                                                               
+                                                                </ul>
+                                                                <ul>
+                                                                    <li ><p>https://news.ltn.com.tw/news/society/breakingnews/3756553<br>
+                                                                        〔記者劉慶侯／台北報導〕曾涉多起毒品案的47歲陳姓男子，昨日被台北市警萬華分局在西門町商圈內圍捕時，一度被路人以為是街頭鬥毆報警；警方將他壓制後起獲2把改造手槍、11枚子彈，住處起獲毒品安非他命、咖啡包數包，全案詢後依槍砲、毒品罪嫌送辦。
+                                                                    </p></li>
+                                                                </ul>
+                                                            </article>
+                                                            <article class="box post-summary">
+                                                                <ul class="meta">
+                                                                    <li><h4>Toyz涉販毒獲150萬交保 卻因吸毒再送觀察勒戒中</h4></li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li><p>https://udn.com/news/story/7315/5927878<br>
+                                                                        網路遊戲「英雄聯盟」LOL香港電競好手劉偉健（Toyz），涉嫌販賣二級毒品大麻菸彈，9月29日經檢察官向法院聲押獲准，檢察官日前聲請延押，法官以劉坦承犯行，並供出上手，11月26日裁定以150萬交保，但檢察官以他涉嫌吸食二級毒品，向法院聲請觀察勒戒獲准，目前劉在看守所勒戒所觀察勒戒。
+                                                                    </p></li>
+                                                                </ul>
+                                                            </article>
+                                                            <article class="box post-summary">
+                                                                <ul class="meta">
+                                                                    <li><h4>連續偷剪電纜線牟利學甲警逮毒蟲送辦</h4></li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li><p>https://udn.com/news/story/7320/5932448<br>台南市學甲區今年10月先後發生3起電纜遭剪斷，警方偵辦鎖定林姓男子涉案，上月28日在新營區嘉芳街持檢方核發拘票攔查林嫌，並從身上起出安毒，訊後依竊盜、毒品危害防制條例送辦。
+                                                                    </p></li>
+                                                                </ul>
+                                                            </article>
+                                                        
+                                                        
+                                                        </section >
+                                                    </li>
+                                                </ul>																
+                                                </article>
+                                            
+    
+                                    </div>
+                                </div>
+                                <div class="col-12">
+    
+                                    <!-- Features -->
+                                        <section class="box features">
+                                        
+                                            
+                                        </section>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    
+                <!-- Footer -->
+                    <footer id="footer">
+                        
+                    </footer>
+    
+            </div>
+            <!-- Scripts -->
+                <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+                <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+                <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+                <script src="{% static 'assets/js/browser.min.js' %}"></script>
+                <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+                <script src="{% static 'assets/js/util.js' %}"></script>
+                <script src="{% static 'assets/js/main.js' %}"></script>
+    
+        </body>
+</html>

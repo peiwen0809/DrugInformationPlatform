@@ -1,5 +1,7 @@
 # SE_final
 
+首頁：127.0.0.1:8000
+
 ## DrugNews 新聞模組
 ### 取得新聞列表(GET)
 http://localhost:8000/news/api/

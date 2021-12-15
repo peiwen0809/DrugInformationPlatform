@@ -21,99 +21,83 @@
                     <li><a href="{% url 'Newsview' %}">新聞查看</a></li>
                     <li><a href="{% url 'Searchview' %}">統計資料</a></li>
                     <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
-                    <li class="current"><a href="#">新聞管理</a></li>
-                    <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li>
-                    <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+                    <!-- 新聞管理跟統計資料管理需要登入才能操作 -->
+                    <!--  <li class="current"><a href="#">新聞管理</a></li> -->
+					<!-- <li><a href="{% url 'Mgrsearchview' %}">統計資料管理</a></li> -->
+					<li class="current"><a href="#" onclick="jumpToNews()">新聞管理</a></li>
+					<li><a href="#" onclick="jumpToSearch()">統計資料管理</a></li>
+                    <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
+					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
+					<!-- 顯示登入資訊 -->
+					<span id="loginSession"></span>
                 </ul>
             </nav>
 
 			<!-- Main -->
-				<section id="main">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="content">
+            <section id="main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="content">
 
-									<!-- Content -->
+                                <!-- Content -->
 
-										
-											<article class="box page-content">
+                                    
+                                        <article class="box page-content">
 
-												<header>
-													<h2>新聞管理</h2>
-                                                    <ul>
-                                                        <ul><h4>標題</h4><input type="search" class="search" placeholder="搜尋標題"></ul>
-                                                        <ul><h4>連結</h4><input type="search" class="search" placeholder="搜尋連結"></ul>
-                                                        <ul><button style="margin-right: 3%;">確認</button><button>取消</button></ul>
-                                                    </ul>
-												</header>
-                                                <section>
-                                                    <article class="box post-summary">
-                                                        <ul class="meta">
-                                                            <li ><h4>新聞標題A</h4></li>                                                               
-                                                        </ul>
-                                                        <ul>
-                                                            <li ><p>https://news.ltn.com.tw/news/society/breakingnews/3756553<br>
-                                                                〔記者劉慶侯／台北報導〕曾涉多起毒品案的47歲陳姓男子，昨日被台北市警萬華分局在西門町商圈內圍捕時，一度被路人以為是街頭鬥毆報警；警方將他壓制後起獲2把改造手槍、11枚子彈，住處起獲毒品安非他命、咖啡包數包，全案詢後依槍砲、毒品罪嫌送辦。
-                                                            </p></li>
-                                                            <ul>
-                                                                <button type="submit" style="margin-right: 3%;">修改</button>
-                                                                <button type="submit">刪除</button>
-                                                            </ul>
-                                                        </ul>
-                                                    </article>
-                                                    <article class="box post-summary">
-                                                        <ul class="meta">
-                                                            <li><h4>Toyz涉販毒獲150萬交保 卻因吸毒再送觀察勒戒中</h4></li>
-                                                        </ul>
-                                                        <ul>
-                                                            <li><p>https://udn.com/news/story/7315/5927878<br>
-                                                                網路遊戲「英雄聯盟」LOL香港電競好手劉偉健（Toyz），涉嫌販賣二級毒品大麻菸彈，9月29日經檢察官向法院聲押獲准，檢察官日前聲請延押，法官以劉坦承犯行，並供出上手，11月26日裁定以150萬交保，但檢察官以他涉嫌吸食二級毒品，向法院聲請觀察勒戒獲准，目前劉在看守所勒戒所觀察勒戒。
-                                                            </p></li>
-                                                            <ul>
-                                                                <button type="submit" style="margin-right: 3%;">修改</button>
-                                                                <button type="submit">刪除</button>
-                                                            </ul>
-                                                        </ul>
-                                                    </article>
-                                                    <article class="box post-summary">
-                                                        <ul class="meta">
-                                                            <li><h4>連續偷剪電纜線牟利學甲警逮毒蟲送辦</h4></li>
-                                                        </ul>
-                                                        <ul>
-                                                            <li><p>https://udn.com/news/story/7320/5932448<br>台南市學甲區今年10月先後發生3起電纜遭剪斷，警方偵辦鎖定林姓男子涉案，上月28日在新營區嘉芳街持檢方核發拘票攔查林嫌，並從身上起出安毒，訊後依竊盜、毒品危害防制條例送辦。
-                                                            </p></li>
-                                                            <ul>
-                                                                <button type="submit" style="margin-right: 3%;">修改</button>
-                                                                <button type="submit">刪除</button>
-                                                            </ul>
-                                                        </ul>
-                                                    </article>
+                                            <header>
+                                                <h2>新聞管理</h2>
+                                                <!-- <ul>
+                                                    <ul><h4>標題</h4><input type="search" class="search" placeholder="搜尋標題"><button style="margin-right: 3%;">搜尋</button></ul>
+                                                </ul> -->
+                                                <ul>
+                                                    <ul><h4>標題</h4><input type="text" id="addTitle" class="search" placeholder="新增標題"></ul>
+                                                    <ul><h4>連結</h4><input type="text" id="addLink" class="search" placeholder="新增連結"></ul>
+                                                    <ul><button style="margin-right: 3%;" onclick="addNews()">確認</button><button>取消</button></ul>
+                                                </ul>
+                                            </header>
+                                            <section id="context" data-idf="Mgrnewsview">
                                                 
-                                                
-                                                </section >
-											</article>
-										
+                                            
+                                            
+                                            </section >
+                                        </article>
+                                    
 
-								</div>
-							</div>
-							<div class="col-12">
+                            </div>
+                        </div>
+                        <div class="col-12">
 
-								<!-- Features -->
-									<section class="box features">
-									
-										
-									</section>
+                            <!-- Features -->
+                                <section class="box features">
+                                
+                                    
+                                </section>
 
-							</div>
-						</div>
-					</div>
-				</section>
+                        </div>
+                    </div>
+                </div>
+                <!-- 分頁 -->
+                <div class="pagecenter">
+                    <ul class="paginationStyle" id="pageid"></ul>
+                </div>
+            </section>
 
 			<!-- Footer -->
-				<footer id="footer">
-					
-				</footer>
+            <footer id="footer">
+                <div class="container">
+                    <div class="row gtr-200">
+                        <div class="col-12">
+                        <section>
+                            <h2 class="major">
+                                <span>About us</span>
+                            </h2>
+                            <p>近年來台灣吸食毒品總人數有逐漸下降的趨勢，但有報導指出吸食毒品的年齡層卻逐漸下降，且人數逐漸增加。此系統收集了台灣近年來毒品吸食人數的變化，依據性別、年齡、毒品種類等等進行比較，並以圖表視覺化呈現，另外也收集了亞洲其他國家的毒品人數相關資料，觀察其他國家是否也有相同情況。</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            </footer>
 
 		</div>
 		<!-- Scripts -->
@@ -124,6 +108,12 @@
             <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
             <script src="{% static 'assets/js/util.js' %}"></script>
             <script src="{% static 'assets/js/main.js' %}"></script>
+
+            <script src="{% static 'assets/js/session.js' %}"></script>
+            <!-- 分頁 -->
+            <script src="{% static 'assets/js/pagination.js' %}"></script>
+            <!-- 新增、刪除、修改 -->
+            <script src="{% static 'assets/js/newsModify.js' %}"></script>
 
 	</body>
 </html>

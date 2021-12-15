@@ -21,10 +21,12 @@ from django.conf.urls import url
 from django.urls import path, include
 from DrugInformationPlatform.adapter import *
 from rest_framework.urlpatterns import format_suffix_patterns
+from login.controller import AdminViewSet
 
 router = DefaultRouter()
 router.register(r'DrugIntro', DrugIntroViewSet, basename='common')
 router.register(r'DrugSearch', DrugSearchViewSet, basename='common')
+router.register(r'login', AdminViewSet, basename='common')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,17 +34,12 @@ urlpatterns = [
     path('news/',include('DrugNews.urls')),
     path('', index, name='frontpage'),  # 這裡的name會對應到html跳轉網址的部分
     path('Searchview/',include('DrugSearch.urls')),
+    path('login/',include('login.urls')),
 
     path('Mgrsearchview/', Mgrsearchview, name='Mgrsearchview'),
     path('Druginfolist/', Druginfolist, name='Druginfolist'),
     path('Druginfoview/', Druginfoview, name='Druginfoview'),
-    path('login/', login, name='login'),
-
+    # path('login/', login, name='login'),
+    path('MgrsearchviewAddcase/', MgrsearchviewAddcase, name='MgrsearchviewAddcase'),
 
 ]
-# 211208-001 似乎會跟router衝突
-# urlpatterns = format_suffix_patterns(urlpatterns)
-# from django.conf import settings
-# from django.conf.urls.static import static
-#
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

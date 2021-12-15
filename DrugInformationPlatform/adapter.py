@@ -1,4 +1,5 @@
 import requests
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 def index(request):
@@ -15,8 +16,9 @@ def Druginfolist(request):
 def Druginfoview(request):
     return render(request, 'Druginfoview.html')
 
-def login(request):
-    return render(request, 'login.html')
+def MgrsearchviewAddcase(request):
+    return render(request, 'MgrsearchviewAddcase.html')
+
 
 
 

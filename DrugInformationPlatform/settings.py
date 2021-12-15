@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'DrugIntro',
     'DrugSearch',
-    'DrugNews.apps.DrugConfig'
+    # 'DrugNews.apps.DrugConfig',
+    'DrugNews',
+    'login',
 ]
 
 MIDDLEWARE = [

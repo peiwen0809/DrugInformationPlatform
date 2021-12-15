@@ -5,7 +5,11 @@ c.clearRect(0, 0, ctx.width, ctx.height);
 var myChart = new Chart(ctx,{});
 
 // 呼叫api，傳入方法名稱及國家ID
-function callApi(name, id) {
+function callApi(name) {
+	var id = 0;
+	if (sessionStorage.getItem("country_id") != null) {
+		id = sessionStorage.getItem("country_id");
+	}
 	var url = 'http://127.0.0.1:8000/DIP/DrugSearch/' + name + '/';
 	fetch(url,
 		{

@@ -26,12 +26,19 @@
                          
                               <input class="input_login"  id="username" name="username" placeholder="帳號" required>
                               <div class="tab"></div>
-                              <input class="input_login"  id="password" name="password" placeholder="密碼" required>
+                              <input type="password" class="input_login"  id="password" name="password" placeholder="密碼" required>
                               <div class="tab"></div>
-                              <input class="submitlogin" type="submit" value="登入" onclick="location.href='frontpage.html'">
+                              <!-- <input class="submitlogin" type="submit" value="登入" onclick="location.href='frontpage.html'"> -->
+                              <input class="submitlogin" type="submit" value="登入" onclick="login()">
+                              <!-- <<form action="" method="POST">
+                                {% csrf_token %}
+                                {{ form }}
+                            
+                                <input class="btn btn-primary" type="submit" value="" />
+                              </form> -->
                          
                   
-                            <h5 onclick="show_hide()">註冊帳號</h5>
+                            <!-- <h5 onclick="show_hide()">註冊帳號</h5> -->
                             
                           </div><!-- login end-->
                         </div><!-- container1 end-->
@@ -81,6 +88,8 @@
       <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
       <script src="{% static 'assets/js/util.js' %}"></script>
       <script src="{% static 'assets/js/main.js' %}"></script>
+
+      <script src="{% static 'assets/js/login.js' %}"></script>
 
 </body>
 </html>

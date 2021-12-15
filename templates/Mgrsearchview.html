@@ -8,7 +8,8 @@
             <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
             <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
     </head>
-	<body class="is-preload">
+    <!-- 當網頁載入完成後會去從session找目前的國家來更改下拉式選單的預設值 -->
+	<body class="is-preload" onload="loadSelectedCountry()">
 		<div id="page-wrapper">
 
 
@@ -20,9 +21,15 @@
 					<li><a href="{% url 'Newsview' %}">新聞查看</a></li>
                     <li><a href="{% url 'Searchview' %}">統計資料</a></li>
                     <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
-                    <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li>
-                    <li class="current"><a href="#">統計資料管理</a></li>
-                    <li><a class="btn" href="{% url 'login' %}">登入</a></li>
+                    <!-- 新聞管理跟統計資料管理需要登入才能操作 -->
+                    <!-- <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li> -->
+					<!-- <li class="current"><a href="#">統計資料管理</a></li> -->
+					<li><a href="#" onclick="jumpToNews()">新聞管理</a></li>
+					<li class="current"><a href="#" onclick="jumpToSearch()">統計資料管理</a></li>
+                    <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
+					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
+					<!-- 顯示登入資訊 -->
+					<span id="loginSession"></span>
 
                     <!-- <li  ><a href="frontpage.html">首頁</a></li>
                     <li><a href="Newsview.html">新聞查看</a></li>
@@ -49,17 +56,24 @@
 												</header>
                                                     <section>
                                                     <div style="display: flex;">
-                                                        <div ><span class="flagspan_search" style="margin-top :5px;" ><img class="flagimage" src="{% static 'images/tw.png'%}" style="width: 150px; height: 100px;
+                                                        <div ><span class="flagspan_search" style="margin-top :5px;" ><img id="countryImg" class="flagimage" src="{% static 'images/tw.png'%}" style="width: 150px; height: 100px;
                                                             padding:0px;"></span>
-                                                        </div>    
+                                                        </div>   
+                                                        <div style="margin-right: 8px; margin-top: 5px;"><h4>國家</h4></div>
+                                                        <div>  <select class="addselect" onclick="setCountrySession(value);changeImg()" id="selectBox">
+                                                                <option value="0">台灣</option>
+                                                                <option value="1">新加坡</option>
+                                                                <option value="2">馬來西亞</option>
+                                                            </select>
+                                                        </div> 
                                                     </div>
                                                     <div style=" padding: 60px;">
                                                         <div style="display:flex;">
                                                             <!-- 傳入的參數要知道是哪個國家 -->
-                                                            <button style="margin-right: 70px;" onclick="callApi('getCountryYearNum',1)">總人數</button>
-                                                            <button style="margin-right: 70px;" onclick="callApi('getAgeNum',1)">年齡</button>
-                                                            <button style="margin-right: 70px;" onclick="callApi('getGenderNum',1)">性別</button>
-                                                            <button style="margin-right: 70px;" onclick="callApi('getDrugTypeNum',1)">種類</button>
+                                                            <button style="margin-right: 70px;" onclick="callApi('getCountryYearNum')">總人數</button>
+                                                            <button style="margin-right: 70px;" onclick="callApi('getAgeNum')">年齡</button>
+                                                            <button style="margin-right: 70px;" onclick="callApi('getGenderNum')">性別</button>
+                                                            <button style="margin-right: 70px;" onclick="callApi('getDrugTypeNum')">種類</button>
                                                             <!-- <button style="margin-right: 70px;">總人數</button> -->
                                                             <!-- <button style="margin-right: 70px;">年齡</button> -->
                                                             <!-- <button style="margin-right: 70px;">性別</button> -->
@@ -67,7 +81,8 @@
                                                         </div>
                                                         <div style="display: flex;">
                                                             <h4 style="margin-left: 15px;"><a href="MgrsearchviewAddcase_people.html">新增</a><h4>
-                                                            <h4 style="margin-left: 15px;"><a href="MgrsearchviewUpdate_people.html">修改</a></h4>
+                                                            <!-- <h4 style="margin-left: 15px;"><a href="MgrsearchviewUpdate_people.html">修改</a></h4> -->
+                                                            <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewAddcase' %}">修改</a></h4>
                                                             <h4 style="margin-left: 105px;"><a href="MgrsearchviewAddcase_age.html">新增/修改</a></h4>
                                                             <h4 style="margin-left: 100px;"><a href="MgrsearchviewAddcase_gender.html">新增/修改</a></h4>
                                                             <h4 style="margin-left: 90px;"><a href="MgrsearchviewAddcase_type.html">新增/修改</a></h4>
@@ -120,9 +135,20 @@
 				</section>
 
 			<!-- Footer -->
-				<footer id="footer">
-					
-				</footer>
+            <footer id="footer">
+                <div class="container">
+                    <div class="row gtr-200">
+                        <div class="col-12">
+                        <section>
+                            <h2 class="major">
+                                <span>About us</span>
+                            </h2>
+                            <p>近年來台灣吸食毒品總人數有逐漸下降的趨勢，但有報導指出吸食毒品的年齡層卻逐漸下降，且人數逐漸增加。此系統收集了台灣近年來毒品吸食人數的變化，依據性別、年齡、毒品種類等等進行比較，並以圖表視覺化呈現，另外也收集了亞洲其他國家的毒品人數相關資料，觀察其他國家是否也有相同情況。</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            </footer>
 
 		</div>
 
@@ -137,6 +163,7 @@
         <!--折線圖-->
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="{% static 'assets/js/piechart.js' %}"></script>
+            <script src="{% static 'assets/js/session.js' %}"></script>
 
 
 	</body>

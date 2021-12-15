@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+   
+        <head>
+            <title>Right Sidebar - TXT by HTML5 UP</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+        </head>
+        <body class="is-preload" onload="getCountryYears('getCountryYearNum')">
+            <div id="page-wrapper">
+    
+    
+    
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="{% url 'frontpage' %}">首頁</a></li>
+                        <li><a href="{% url 'Newsview' %}">新聞查看</a></li>
+                        <li><a href="{% url 'Searchview' %}">統計資料</a></li>
+                        <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
+                        <!-- 新聞管理跟統計資料管理需要登入才能操作 -->
+                        <!-- <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li> -->
+                        <!-- <li class="current"><a href="#">統計資料管理</a></li> -->
+                        <li><a href="#" onclick="jumpToNews()">新聞管理</a></li>
+                        <li class="current"><a href="#" onclick="jumpToSearch()">統計資料管理</a></li>
+                        <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
+                        <li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
+                        <!-- 顯示登入資訊 -->
+                        <span id="loginSession"></span>
+                    </ul>
+                </nav>
+    
+                <!-- Main -->
+                    <section id="main">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="content">
+                                        <!-- Content -->             
+                                            <article class="box page-content">
+                                                <ul class="divided">
+                                                    <li>
+                                                        <header><h2>統計資料修改</h2></header>
+                                                        <div style="display: flex;">
+                                                            <div style="margin-right: 8px; margin-top: 5px;"><h4>國家</h4></div>
+                                                            <div>  <select class="addselect" onclick="setCountrySession(value);getCountryYears('getCountryYearNum')" id="selectBox">
+                                                                    <option value="0">台灣</option>
+                                                                    <option value="1">新加坡</option>
+                                                                    <option value="2">馬來西亞</option>
+                                                                </select>
+                                                            </div> 
+                                                            <div style="margin-right: 8px; margin-top: 5px;"><h4>年份</h4></div>
+															<!-- <div>  <select class="addselect" onchange="setCountrySession(value);changeImg()" id="selectBox"> -->
+                                                            <div>  <select class="addselect" onchange="totalTable(value)" id="yearBox">
+
+																</select>
+															</div>  
+                                                        </div>
+                                                        <div style=" padding-top: 60px;">
+                                                        <section>
+                                                            <div style="float:left; width:30%">
+                                                                <table width="100%" id="t1">
+                                                                <tr>
+                                                                    <th align="center">性別</th>
+                                                                    <th align="center">人數</th>
+                                                                </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div style="float:left; width:30%">
+                                                                <table width="100%" id="t2">
+                                                                <tr>
+                                                                    <th align="center">年齡層</th>
+                                                                    <th align="center">人數</th>
+                                                                </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div style="float:left; width:30%">
+                                                                <table width="100%" id="t3">
+                                                                <tr>
+                                                                    <th align="center">毒品</th>
+                                                                    <th align="center">人數</th>
+                                                                </tr>
+                                                                </table>
+                                                            </div>                                                       
+                                                            
+                                                        </section >
+                                                        <section>
+                                                            <div>
+                                                                <button type="submit" style="margin-right: 15%;" onclick="modify()">確認修改</button>
+                                                                <button type="submit">取消修改</button>
+                                                            </div>
+                                                        </section>
+                                                        
+                                                    </div>
+                                                    </li>
+                                                </ul>																
+                                                </article>
+                                            
+    
+                                    </div>
+                                </div>
+                                <div class="col-12">
+    
+                                    <!-- Features -->
+                                        <section class="box features">
+                                        
+                                            
+                                        </section>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    
+                <!-- Footer -->
+                <footer id="footer">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
+							<section>
+								<h2 class="major">
+									<span>About us</span>
+								</h2>
+								<p>近年來台灣吸食毒品總人數有逐漸下降的趨勢，但有報導指出吸食毒品的年齡層卻逐漸下降，且人數逐漸增加。此系統收集了台灣近年來毒品吸食人數的變化，依據性別、年齡、毒品種類等等進行比較，並以圖表視覺化呈現，另外也收集了亞洲其他國家的毒品人數相關資料，觀察其他國家是否也有相同情況。</p>
+							</section>
+						</div>
+					</div>
+				</div>
+				</footer>
+    
+            </div>
+            <!-- Scripts -->
+                <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+                <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+                <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+                <script src="{% static 'assets/js/browser.min.js' %}"></script>
+                <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+                <script src="{% static 'assets/js/util.js' %}"></script>
+                <script src="{% static 'assets/js/main.js' %}"></script>
+
+                <script src="{% static 'assets/js/session.js' %}"></script>
+                <script src="{% static 'assets/js/addcase.js' %}"></script>
+    
+        </body>
+</html>

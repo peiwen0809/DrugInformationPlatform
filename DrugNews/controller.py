@@ -14,7 +14,8 @@ class News(serializers.ModelSerializer):
 
 def newsapi(request):
   if(request.method == 'GET'):
-    newsall=NewsList.objects.order_by("-id")[:10]
+    # newsall=NewsList.objects.order_by("-id")[:10]
+    newsall=NewsList.objects.order_by("-id")  # 211214-001 修改為回傳資料庫所有的新聞，由前端自行分頁
     serializer = News(newsall, many=True)
     return Response(serializer.data)
   elif request.method == 'POST':

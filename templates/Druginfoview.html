@@ -2,12 +2,12 @@
 {%  load static %}
 <html lang="en">
 <head>
-    <title>Right Sidebar - TXT by HTML5 UP</title>
+    <title>毒品防治資訊平台</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
 </head>
-<body class="is-preload">
+<body class="is-preload" onload="showInfo()">
     <div id="page-wrapper">
 
 
@@ -17,7 +17,7 @@
                     <li><a href="{% url 'frontpage' %}">首頁</a></li>
 					<li><a href="{% url 'Newsview' %}">新聞查看</a></li>
                     <li><a href="{% url 'Searchview' %}">統計資料</a></li>
-                    <li class="current"><a href="#">毒品介紹</a></li>
+                    <li><a href="{% url 'Druginfolist' %}">毒品介紹</a></li>
                     <!-- 新聞管理跟統計資料管理需要登入才能操作 -->
                     <!-- <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li> -->
 					<!-- <li class="current"><a href="#">統計資料管理</a></li> -->
@@ -38,26 +38,12 @@
                         <div class="content">
 
                             <!-- Content -->
-                            <article class="box page-content">
+                            <!-- 為了js在取圖片目錄時的來源，不顯示 -->
+                            <ul><img id="drugImg" src="{% static 'images/weed1.jpeg' %}" style="display:none"></ul>
+                            <article class="box page-content" id="druginfoview">
+                                <input type="button" onclick="history.back()" value="回上一頁">
+                                
 
-                                <header>
-                                    <h2>大麻</h2>                                        
-                                </header>
-
-                                <section>
-                                    <span ><img class="drugimage" src="{% static 'images/weed1.jpeg' %}"></span>
-                                    <span ><img class="drugimage" src="{% static 'images/weed2.jpeg' %}"></span>
-                                    <span ><img class="drugimage" src="{% static 'images/weed3.jpeg' %}"></span>
-                                </section>
-                                <section>
-                                    <p>
-                                        This is <strong>大麻</strong>, yet another free responsive site template designed by
-                                        <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net">HTML5 UP</a>. It's released under the
-                                        <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for
-                                        whatever you're working on (personal or commercial), just be sure to give us credit for the design.
-                                        That's basically it :)
-                                    </p>
-                                </section>                                                              
                             </article>
                         </div>
                     </div>
@@ -102,6 +88,7 @@
         <script src="{% static 'assets/js/main.js' %}"></script>
 
         <script src="{% static 'assets/js/session.js' %}"></script>
+        <script src="{% static 'assets/js/drugInfo.js' %}"></script>
 
 
 </body>

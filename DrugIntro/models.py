@@ -6,7 +6,10 @@ class DrugIntro(models.Model):
     drug_id = models.IntegerField(primary_key=True)
     ch_name = models.TextField()
     en_name = models.TextField()
-    # desc = models.TextField()
+    desc = models.TextField()
+    img1 = models.TextField()
+    img2 = models.TextField()
+    img3 = models.TextField()
 
     class Meta:
         db_table = "drug_type"

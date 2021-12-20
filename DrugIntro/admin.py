@@ -1,5 +1,3 @@
-from django.contrib import admin
-
 # Register your models here.
 from django.contrib import admin
 from DrugIntro.models import DrugIntro
@@ -8,6 +6,6 @@ from DrugIntro.models import DrugIntro
 
 #列出欄位
 class ShowDrugInfo(admin.ModelAdmin):
-    list_display = ('drug_id', 'ch_name', 'en_name')
+    list_display = ('drug_id', 'ch_name', 'en_name', 'desc', 'img1', 'img2', 'img3')
 
 admin.site.register(DrugIntro, ShowDrugInfo)  #admin/admin123

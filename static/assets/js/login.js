@@ -2,7 +2,7 @@
 function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    var url = 'http://127.0.0.1:8000/DIP/login/login/';
+    var url = '/DIP/login/login/';
 	fetch(url,
 		{
 			method:'POST',
@@ -23,10 +23,9 @@ function login() {
 function checkAuth(username,myJson) {
     if (myJson['desc'] == 'Successful') {  //登入成功回到上一頁
         history.back();
+        sessionStorage.setItem("user", username);  //儲存session
     } else {
         alert(myJson['desc'])
     }
-    sessionStorage.setItem("user", username);  //儲存session
-
-    console.log(myJson)
+    // console.log(myJson)
 }

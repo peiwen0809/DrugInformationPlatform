@@ -11,10 +11,10 @@ def index(request):
 def Mgrsearchview(request):
     return render(request, 'Mgrsearchview.html')
 
-def Druginfolist(request):
-    return render(request, 'Druginfolist.html')
-def Druginfoview(request):
-    return render(request, 'Druginfoview.html')
+
+
+def MgrsearchviewUpdatecase(request):
+    return render(request, 'MgrsearchviewUpdatecase.html')
 
 def MgrsearchviewAddcase(request):
     return render(request, 'MgrsearchviewAddcase.html')

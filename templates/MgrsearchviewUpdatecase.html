@@ -8,7 +8,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
         </head>
-        <body class="is-preload" onload="createCol()" id="addcase">
+        <body class="is-preload" onload="getCountryYears('getCountryYearNum')">
             <div id="page-wrapper">
     
     
@@ -34,7 +34,7 @@
     
                 <!-- Main -->
                     <section id="main">
-                        <form method="post" action="" onsubmit="add(this); return false"> {% csrf_token %}
+                        <form method="post" action="" onsubmit="modify(this); return false"> {% csrf_token %}
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -43,7 +43,7 @@
                                         <article class="box page-content">
                                             <ul class="divided">
                                                 <li>
-                                                    <header><h2>統計資料新增</h2></header>
+                                                    <header><h2>統計資料修改</h2></header>
                                                     <div style="display: flex;">
                                                         <div style="margin-right: 8px; margin-top: 5px;"><h4>國家</h4></div>
                                                         <div>  <select class="addselect" onclick="setCountrySession(value);getCountryYears('getCountryYearNum')" id="selectBox">
@@ -53,13 +53,11 @@
                                                             </select>
                                                         </div> 
                                                         <div style="margin-left: 100px; margin-right: 8px; margin-top: 5px;"><h4>年份</h4></div>
-                                                        <div><input class="addsearch1" style="margin-top: 0px;" type="text" maxlength="4" id="yearBox" required></div>
                                                         <!-- <div>  <select class="addselect" onchange="setCountrySession(value);changeImg()" id="selectBox"> -->
-                                                        <!-- <div>  <select class="addselect" onchange="totalTable(value)" id="yearBox">
+                                                        <div>  <select class="addselect" onchange="totalTable(value)" id="yearBox">
 
                                                             </select>
-                                                        </div>   -->
-                                                       
+                                                        </div>  
                                                     </div>
                                                     
                                                     <div style=" padding-top: 60px;">
@@ -107,8 +105,8 @@
                             </div>
                         </div>
                         <div align="center">
-                            <button type="submit">確認新增</button>
-                            <input type="button" onclick="jumpToSearch()" value="取消新增"></button>
+                            <button type="submit">確認修改</button>
+                            <input type="button" onclick="jumpToSearch()" value="取消修改"></button>
                         </div>
                     </form>
                 </section>
@@ -141,7 +139,6 @@
 
                 <script src="{% static 'assets/js/session.js' %}"></script>
                 <script src="{% static 'assets/js/updatecase.js' %}"></script>
-                <script src="{% static 'assets/js/addcase.js' %}"></script>
     
         </body>
 </html>

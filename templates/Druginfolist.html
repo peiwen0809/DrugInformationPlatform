@@ -2,12 +2,12 @@
 {%  load static %}
 <html lang="en">
 <head>
-    <title>Right Sidebar - TXT by HTML5 UP</title>
+    <title>毒品防治資訊平台</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
 </head>
-<body class="is-preload">
+<body class="is-preload" onload="getDrugList()">
     <div id="page-wrapper">
 
 
@@ -42,35 +42,21 @@
                             <article class="box page-content">
 
                                 <header>
-                                <h2>毒品介紹</h2>                                        
-                                <input type="search" class="search"  placeholder="搜尋毒品"  >
-                                <button >搜尋</button>
+                                <h2>毒品介紹</h2>  
+                                <form action="" onsubmit="doSearch(this); return false" onreset=""> {% csrf_token %}                                      
+                                    <input type="search" class="search"  placeholder="搜尋毒品" id="searchDrug" >
+                                    <button type="submit">搜尋</button>
+                                    <button type="reset" onclick="getDrugList()" >清除</button>
+                                </form>
+
                                 </header>
                               
                                 <section>
-                                    <ul class="divided">
-                                        <li>
-                                            <article class="box post-summary">
-                                                <h3><a href="{% url 'Druginfoview' %}">大麻</a></h3>
-                                                <ul class="meta">
-                                                    <li ><img class="drugimage"  src="{% static 'images/weed1.jpeg' %}"></li> 
-                                                </ul>
-                                                <ul>
-                                                   <li><p>大麻（西班牙語：Cannabis、Marijuana）是一種使用大麻屬植物製成的藥物，在醫療合法化的國家被視為醫療用藥，是使用雌性大麻的花與毛狀體晾曬製成的。主要分為Sativa（Cannabis sativa）、Indica（Cannabis indica）和結合兩者特點的雜交大麻（或稱混合大麻，英語：hybrid cannabis）三種栽培品種。其主要作用於精神方面，主要的成份為四氫大麻酚（tetrahydrocannabinol，縮寫THC），而大麻亦含有超過423種已知化合物[1]，其中包括至少65種其他大麻素[2]，例如大麻酚（cannabinol，簡稱CBN）、大麻二酚（cannabidiol，簡稱CBD），它們所產生的感官影響與四氫大麻酚所產生的精神影響有明顯的差異[3]。Marijuana一詞是指草藥形式製成的大麻，包括成熟的雌株花、葉、莖，而Hashish（哈希什）則是指大麻樹脂，一種濃縮大麻的方式[4]。</p></li>
-                                                </ul>
-                                            </article>
-                                        </li>
-                                        <li>
-                                            <article class="box post-summary">
-                                                <h3><a href="#">安非他命</a></h3>
-                                                <ul class="meta"></ul>
-                                                    <li ><img class="drugimage" src="{% static 'images/af1.jpeg' %}"></li>
-                                                </ul>
-                                                <ul>
-                                                    <li>安非他命（英語：amphetamine, alpha-methylphenethylamine）（化學式：C₆H₅CH₂CH(CH₃)NH₂，為中樞神經刺激劑，用來治療注意力不足過動症、嗜睡症、和肥胖症。英語源通稱「安非他命」擷取自α-甲基苯乙胺的英文讀法「alpha‑methylphenethylamine」之縮讀。安非他命是在公元1887年發現的，以兩種對映異構物的形式存在[I]，分別是左旋安非他命和右旋安非他命。準確來說，安非他命指的是特定的化學物質，是外消旋的純胺類型態[24][25]，這個物質等同於安非他命的兩個對映異構物：左旋安非他命和右旋安非他命等量之純胺類型態。不過，安非他命一詞已用來表示任何比例安非他命對映異構物的組合，或是任一種異構物</li>
-                                                </ul>
-                                            </article>
-                                        </li>
+                                    <!-- 為了js在取圖片目錄時的來源，不顯示 -->
+                                    <img id="drugImg" src="{% static 'images/weed1.jpeg' %}" style="display:none">
+                                    <ul class="divided" id="drugContent">
+                                        
+                                        
                                     </ul>
                                 </section>
                                                                                      
@@ -112,6 +98,7 @@
         <script src="{% static 'assets/js/main.js' %}"></script>
 
         <script src="{% static 'assets/js/session.js' %}"></script>
+        <script src="{% static 'assets/js/drugInfo.js' %}"></script>
 
 </body>
 </html>

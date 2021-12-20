@@ -6,8 +6,10 @@ if (sessionStorage.getItem("user") != null) {
 }else {
     document.getElementById('loginSts').innerHTML="登入"
 }
+if (sessionStorage.getItem("country_id") == null) {
+    sessionStorage.setItem("country_id",0);  // 指定一開始的國家
+}
 
-sessionStorage.setItem("country_id",0);  // 指定一開始的國家
 
 //根據在首頁點選的國家更改統計資料查詢下拉選單的預設選項
 function loadSelectedCountry() {
@@ -24,7 +26,7 @@ function changeImg() {
     }else if (sessionStorage.getItem("country_id") == "2") {  // 馬來西亞
         img = "ma.png";
     }
-    // console.log(imgPath)
+    console.log(imgPath.src)
     var imgRoot = imgPath.src;
     var lastidx = imgRoot.lastIndexOf("/");  //最後一個斜線後為圖片名稱，要換成別的圖片
     imgPath.src = imgRoot.substr(0,lastidx+1) + img;
@@ -36,7 +38,8 @@ function changeImg() {
 function logInOut() {
     if (sessionStorage.getItem("user") != null) {
         sessionStorage.removeItem("user")
-        location.reload()
+        // location.reload()
+        location.href="/"  // 如果登出跳回首頁
     }else {
         location.href="/login/"
     }

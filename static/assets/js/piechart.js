@@ -10,7 +10,7 @@ function callApi(name) {
 	if (sessionStorage.getItem("country_id") != null) {
 		id = sessionStorage.getItem("country_id");
 	}
-	var url = 'http://127.0.0.1:8000/DIP/DrugSearch/' + name + '/';
+	var url = '/DIP/DrugSearch/' + name + '/';
 	fetch(url,
 		{
 			method:'POST',

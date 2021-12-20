@@ -35,7 +35,7 @@ newsput = function(parm){
     let origin = parm.parentNode;
     
     let data_id=parm.parentNode.getAttribute("newsid");
-    parm.parentNode.innerHTML='<ul class="meta"><li><input size="70" type = "text" class="search" value="'+tputs+'"></li></ul><ul><input size = "70" type = "text" class="search" value="'+lputs+'"></ul> <button type="submit" onclick="putdata()" style="margin-right: 3%;">確認</button><button onclick="cancel()" type="submit">取消</button>'
+    parm.parentNode.innerHTML='<form method="put" action="" onsubmit="putdata(this); return false"><ul class="meta"><li><input size="70" type = "text" class="search" value="'+tputs+'" required></li></ul><ul><input size = "70" type = "text" class="search" value="'+lputs+'" required></ul> <button type="submit" style="margin-right: 3%;">確認</button><button onclick="cancel()">取消</button></form>'
     cancel = function(){
         origin.innerHTML='<ul class="meta"><li><h4>'+tputs+'</h4></li></ul><ul><a target="_blank" href="'+lputs+'">'+lputs+'</a></ul> <button type="submit" class="modify" onclick = "newsput(this)" style="margin-right: 3%;">修改</button><button type="submit" onclick = "newsdelete(this)">刪除</button>'
     }
@@ -45,12 +45,22 @@ newsput = function(parm){
         const json = JSON.stringify(data);
         let url = '/news/api/'+data_id;
         
-        return fetch(url, {body: json,
+        fetch(url, {body: json,
             headers: {'user-agent': 'Mozilla/4.0 MDN Example','content-type': 'application/json'
             },
             method: 'PUT'})
-            .then(response => response.json())
-            .then( window.location.reload())
+            .then(function(response){
+                if (response.status===400){
+                    //alert來提醒
+                    alert('偵測到網址或標題格式不符，請重新輸入')
+                    
+                    //origin.innerHTML+='<ul>輸入格式錯誤，請重新輸入</ul>';
+                    
+                }
+                else{
+                    window.location.reload()
+                }
+            })
     }
 }
 
@@ -64,7 +74,19 @@ function addNews() {
             body:JSON.stringify({"title":title,"link":link}),
             headers:{'Content-Type':'application/json'}
         })
-    .then(response => response.json())
-    .then( window.location.reload());
+        .then(function(response){
+            if (response.status===400){
+                //alert來提醒
+                alert('偵測到網址或標題格式不符，請重新輸入')
+                //寫在網頁中，如果有用這個，在header中的ul的加入addnew
+                
+                //document.getElementById("addnew").innerHTML +="偵測到網址或標題格式不符，請重新輸入"
+
+                
+            }
+            else{
+                window.location.reload()
+            }
+        })
 
 }

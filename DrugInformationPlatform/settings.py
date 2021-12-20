@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 'DrugNews.apps.DrugConfig',
     'DrugNews',
     'login',
+    'BaseTableSearch',
 ]
 
 MIDDLEWARE = [

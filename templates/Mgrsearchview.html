@@ -29,7 +29,7 @@
                     <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
 					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
 					<!-- 顯示登入資訊 -->
-					<span id="loginSession"></span>
+					<li><span class="navspan" id="loginSession"></span></li>
 
                     <!-- <li  ><a href="frontpage.html">首頁</a></li>
                     <li><a href="Newsview.html">新聞查看</a></li>
@@ -58,13 +58,19 @@
                                                     <div style="display: flex;">
                                                         <div ><span class="flagspan_search" style="margin-top :5px;" ><img id="countryImg" class="flagimage" src="{% static 'images/tw.png'%}" style="width: 150px; height: 100px;
                                                             padding:0px;"></span>
-                                                        </div>   
+                                                        </div> 
                                                         <div style="margin-right: 8px; margin-top: 5px;"><h4>國家</h4></div>
                                                         <div>  <select class="addselect" onclick="setCountrySession(value);changeImg()" id="selectBox">
                                                                 <option value="0">台灣</option>
                                                                 <option value="1">新加坡</option>
                                                                 <option value="2">馬來西亞</option>
                                                             </select>
+                                                        </div> 
+                                                        <div>                                                            
+                                                            <h4 style="margin-left: 50px; margin-top: 10px;"><a href="{% url 'MgrsearchviewAddcase' %}">新增</a></h4>
+                                                        </div> 
+                                                        <div>                                                            
+                                                            <h4 style="margin-left: 50px; margin-top: 10px;"><a href="{% url 'MgrsearchviewUpdatecase' %}">修改</a></h4>
                                                         </div> 
                                                     </div>
                                                     <div style=" padding: 60px;">
@@ -80,13 +86,9 @@
                                                             <!-- <button style="margin-right: 70px;">種類</button> -->
                                                         </div>
                                                         <div style="display: flex;">
-                                                            <!-- <h4 style="margin-left: 15px;"><a href="MgrsearchviewAddcase_people.html">新增</a><h4> -->
                                                             <!-- <h4 style="margin-left: 15px;"><a href="MgrsearchviewUpdate_people.html">修改</a></h4> -->
-                                                            <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewAddcase' %}">新增</a></h4>
-                                                            <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewUpdatecase' %}">修改</a></h4>
-                                                            <h4 style="margin-left: 105px;"><a href="MgrsearchviewAddcase_age.html">新增/修改</a></h4>
-                                                            <h4 style="margin-left: 100px;"><a href="MgrsearchviewAddcase_gender.html">新增/修改</a></h4>
-                                                            <h4 style="margin-left: 90px;"><a href="MgrsearchviewAddcase_type.html">新增/修改</a></h4>
+                                                            
+                                                            
 
 
                                                                                                                   

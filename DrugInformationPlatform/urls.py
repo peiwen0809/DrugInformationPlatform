@@ -17,10 +17,10 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from DrugIntro.controller import DrugIntroViewSet
 from DrugSearch.controller import DrugSearchViewSet
+from SearchManage.controller import SearchManageViewSet
 from django.conf.urls import url
 from django.urls import path, include
 from DrugInformationPlatform.adapter import *
-from rest_framework.urlpatterns import format_suffix_patterns
 from login.controller import AdminViewSet
 from BaseTableSearch.controller import BaseTableSearchViewSet
 
@@ -29,21 +29,16 @@ router.register(r'DrugIntro', DrugIntroViewSet, basename='common')
 router.register(r'DrugSearch', DrugSearchViewSet, basename='common')
 router.register(r'login', AdminViewSet, basename='common')
 router.register(r'BaseTableSearch', BaseTableSearchViewSet, basename='common')
+router.register(r'SearchManage', SearchManageViewSet, basename='common')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # 首頁
+    path('', index, name='frontpage'),  # 這裡的name會對應到html跳轉網址的部分
     url(r'^DIP/', include(router.urls)),  # DIP：Drug Information Platform
     path('news/',include('DrugNews.urls')),
-    path('', index, name='frontpage'),  # 這裡的name會對應到html跳轉網址的部分
     path('Searchview/',include('DrugSearch.urls')),
     path('',include('DrugIntro.urls')),
     path('login/',include('login.urls')),
-
-    path('Mgrsearchview/', Mgrsearchview, name='Mgrsearchview'),
-    # path('Druginfolist/', Druginfolist, name='Druginfolist'),
-    # path('Druginfoview/', Druginfoview, name='Druginfoview'),
-    # path('login/', login, name='login'),
-    path('MgrsearchviewAddcase/', MgrsearchviewAddcase, name='MgrsearchviewAddcase'),
-    path('MgrsearchviewUpdatecase/', MgrsearchviewUpdatecase, name='MgrsearchviewUpdatecase'),
-
+    path('',include('SearchManage.urls')),
 ]

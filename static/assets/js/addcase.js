@@ -54,12 +54,16 @@ function displayNewCol(tableId, data) {
     var inner = document.getElementById(tableId);  // 要寫入的table
     // inner.innerHTML='';
     var label = "";
+    var idName = "";  // 211222-001 新增一欄ID，為tag在資料庫裡的ID，為了更新的時候可以指定要修改哪一筆資料
     if (tableId == "t1") {  // 性別
         label = 'gender';
+        idName = "gender_id"
     }else if (tableId == "t2") {  // 年齡層
         label = 'age_range';
+        idName = "age_id"
     } else if (tableId == "t3") {  // 毒品種類
         label = "ch_name";
+        idName = "drug_id"
     } else {
         console.log("No define tableID")
         return
@@ -67,11 +71,12 @@ function displayNewCol(tableId, data) {
     
     for (var i =0; i<data.length; i++){  // 在表格中依序顯示
         // 新增required必填，type改為數字，避免被輸入非數字、小數，限定最小值為0
-        var addhtml = '<tr><td align="center" id='+tableId+'_tag'+i+'>'+data[i][label]+'</td><td align="center"><input type="number" min="0" class="addsearch1" id='+tableId+'_value'+i+' value="0" required></td></tr>'
+        // 211222-001 新增一欄ID，為tag在資料庫裡的ID，為了更新的時候可以指定要修改哪一筆資料，不顯示
+        var addhtml = '<tr><td align="center" style="display: none;" id='+tableId+'_id'+i+'>'+data[i][idName]+'</td><td align="center" id='+tableId+'_tag'+i+'>'+data[i][label]+'</td><td align="center"><input type="number" min="0" class="addsearch1" id='+tableId+'_value'+i+' value="0" required></td></tr>'
         inner.innerHTML+=addhtml;
     }
     // 最後一列的合計值為0
-    var totalHtml = '<tr><td></td></tr><tr><td align="center">合計</td><td id='+tableId+'total align="center">0</td></tr>'
+    var totalHtml = '<tr><td align="center">合計</td><td id='+tableId+'total align="center">0</td></tr>'
     inner.innerHTML+=totalHtml;
 }
 

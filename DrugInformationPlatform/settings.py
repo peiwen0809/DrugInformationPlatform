@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'DrugNews',
     'login',
     'BaseTableSearch',
+    'SearchManage',
 ]
 
 MIDDLEWARE = [

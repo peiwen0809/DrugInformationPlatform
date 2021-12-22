@@ -77,7 +77,7 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # 211210-001 修改為回傳實際資料，由前端畫圖
         response = []
         for r in ageNum:
-            num_of_people = {"year": str(r.year), "num": r.num, "age": r.age_range}
+            num_of_people = {"year": str(r.year), "num": r.num, "age": r.age_range,"age_id":r.age_id}
             response.append(num_of_people)
 
         # 211213-001 畫圖會影響效能 mark ==============start=================
@@ -126,7 +126,7 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # 211210-001 修改為回傳實際資料，由前端畫圖
         response = []
         for r in genderNum:
-            num_of_people = {"year": str(r.year), "num": r.num, "gender": r.gender}
+            num_of_people = {"year": str(r.year), "num": r.num, "gender": r.gender, "gender_id": r.gender_id}
             response.append(num_of_people)
 
         # 211213-001 畫圖會影響效能 mark  ============start==============================
@@ -172,7 +172,7 @@ class DrugSearchViewSet(viewsets.ModelViewSet):
         # 211210-001 修改為回傳實際資料，由前端畫圖
         response = []
         for r in drugTypeNum:
-            num_of_people = {"year": str(r.year), "num": r.num, "type": r.ch_name}
+            num_of_people = {"year": str(r.year), "num": r.num, "type": r.ch_name, "type_id": r.drug_id}
             response.append(num_of_people)
 
         # 211213-001 畫圖會影響效能 mark ====================start======================

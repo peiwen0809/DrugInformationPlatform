@@ -35,7 +35,7 @@ class DrugAge(models.Model):
     def ageNum(**kwargs):
         country_id = kwargs.get('country_id')
         # 211207-001 修改age table的欄位名稱
-        result = DrugAge.objects.raw('SELECT age_num.country_id,age_num.year,age.age_range,age_num.num FROM age_num,age WHERE age_num.age_id=age.age_id AND age_num.country_id = %s ORDER BY year',
+        result = DrugAge.objects.raw('SELECT age_num.country_id,age_num.year,age.age_range,age_num.num,age.age_id FROM age_num,age WHERE age_num.age_id=age.age_id AND age_num.country_id = %s ORDER BY year',
                                          [country_id])
         return result
 
@@ -54,7 +54,7 @@ class DrugGender(models.Model):
     def genderNum(**kwargs):
         country_id = kwargs.get('country_id')
         # 211207-001 gender table的欄位名稱
-        result = DrugGender.objects.raw('SELECT gender_num.country_id, gender_num.num, gender_num.year, gender.gender FROM gender_num,gender WHERE gender_num.gender_id = gender.gender_id AND country_id = %s ORDER BY year',
+        result = DrugGender.objects.raw('SELECT gender_num.country_id, gender_num.num, gender_num.year, gender.gender, gender_num.gender_id FROM gender_num,gender WHERE gender_num.gender_id = gender.gender_id AND country_id = %s ORDER BY year',
                                          [country_id])
         return result
 
@@ -74,6 +74,6 @@ class DrugType(models.Model):
     def drugTypeNum(**kwargs):
         country_id = kwargs.get('country_id')
         # 211207-001 drug type table的欄位名稱
-        result = DrugAge.objects.raw('SELECT drug_num.country_id,drug_num.year,drug_type.ch_name,drug_num.num FROM drug_num,drug_type WHERE drug_num.drug_id=drug_type.drug_id AND drug_num.country_id = %s ORDER BY year',
+        result = DrugAge.objects.raw('SELECT drug_num.country_id,drug_num.year,drug_type.ch_name,drug_num.num, drug_num.drug_id FROM drug_num,drug_type WHERE drug_num.drug_id=drug_type.drug_id AND drug_num.country_id = %s ORDER BY year',
                                          [country_id])
         return result

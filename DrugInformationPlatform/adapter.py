@@ -7,18 +7,6 @@ def index(request):
     # geodata = response.json()
     return render(request, 'frontpage.html')
 
-# 對應各APP要自己新增
-def Mgrsearchview(request):
-    return render(request, 'Mgrsearchview.html')
-
-
-
-def MgrsearchviewUpdatecase(request):
-    return render(request, 'MgrsearchviewUpdatecase.html')
-
-def MgrsearchviewAddcase(request):
-    return render(request, 'MgrsearchviewAddcase.html')
-
 
 
 

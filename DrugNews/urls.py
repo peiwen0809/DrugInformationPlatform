@@ -10,4 +10,5 @@ urlpatterns=[
     path('api/<int:pk>',controller.newsid),
     path('Mgrnewsview/', views.Mgrnewsview, name='Mgrnewsview'),
     path('Newsview/', views.Newsview, name='Newsview'),
+    path("api/autoUpdateNews/",controller.autoUpdateNews),  # 211224-001 新增爬蟲抓取新聞標題、連結，並寫入資料庫
 ]

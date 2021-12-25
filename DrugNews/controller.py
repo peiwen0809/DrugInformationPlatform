@@ -39,3 +39,16 @@ def newsid(request, pk):
   elif request.method == 'DELETE':
     new.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# 211224-001 新增爬蟲抓取新聞標題、連結，並寫入資料庫
+from DrugNews import models
+from django.http import JsonResponse
+@api_view(['POST'])
+def autoUpdateNews(request):
+  try:
+    models.autoUpdate()
+    return JsonResponse({"success":True, "desc":""},safe=False,status=status.HTTP_200_OK)
+  except Exception as e:
+    print(e)
+    return JsonResponse({"success": False, "desc": str(e)}, safe=False,status=status.HTTP_400_BAD_REQUEST)

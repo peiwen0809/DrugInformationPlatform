@@ -29,7 +29,7 @@
                     <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
 					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
 					<!-- 顯示登入資訊 -->
-					<span id="loginSession"></span>
+					<li><span class="navspan" id="loginSession"></span></li>
                 </ul>
             </nav>
 
@@ -54,7 +54,9 @@
                                                     <ul>
                                                         <ul><h4>標題</h4><input type="text" id="addTitle" class="search" placeholder="新增標題" required></ul>
                                                         <ul><h4>連結</h4><input type="url" id="addLink" class="search" placeholder="新增連結" required></ul>
-                                                        <ul><input style="margin-right: 3%;" type="submit" value="新增"><button type="reset">清除</button></ul>
+                                                        <ul><input style="margin-right: 3%;" type="submit" value="新增">
+                                                            <button type="reset">清除</button>
+                                                            <input type="button" style="margin-left: 3%;" onclick="autoUpdateNews()" value="更新"></ul>
                                                         <!-- <ul><button style="margin-right: 3%;" onclick="addNews()">確認</button><button>取消</button></ul> -->
                                                     </ul>
                                                 </form>

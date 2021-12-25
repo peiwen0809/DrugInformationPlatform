@@ -14,7 +14,10 @@ if (sessionStorage.getItem("country_id") == null) {
 //根據在首頁點選的國家更改統計資料查詢下拉選單的預設選項
 function loadSelectedCountry() {
     document.getElementById('selectBox').value = sessionStorage.getItem("country_id");
-    changeImg()
+    if (document.getElementById("countryImg") != null) {
+        changeImg()
+    }
+    
 }
 
 // 根據下拉式選單選的國家，更改國家圖片及重新呼叫總人數的API

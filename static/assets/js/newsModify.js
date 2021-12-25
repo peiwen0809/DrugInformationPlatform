@@ -88,5 +88,27 @@ function addNews() {
                 window.location.reload()
             }
         })
+}
 
+
+// 211224-001 爬蟲自動更新新聞資料
+function autoUpdateNews() {
+    var url = '/news/api/autoUpdateNews/';
+    fetch(url,
+        {
+            method:'POST',
+            headers:{'Content-Type':'application/json'}
+        })
+        .then(function(response){
+            return response.json()
+        }).then(function(myJson){
+            if (!myJson['success']){
+                //alert來提醒
+                alert(myJson["desc"])
+            }
+            else{
+                alert("新聞資料已自動更新")
+                window.location.reload()
+            }
+        })
 }

@@ -29,7 +29,7 @@
                     <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
 					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
 					<!-- 顯示登入資訊 -->
-					<span id="loginSession"></span>
+					<li><span class="navspan" id="loginSession"></span></li>
 
                     <!-- <li  ><a href="frontpage.html">首頁</a></li>
                     <li><a href="Newsview.html">新聞查看</a></li>
@@ -66,7 +66,14 @@
                                                                 <option value="2">馬來西亞</option>
                                                             </select>
                                                         </div> 
+                                                        <div>                                                            
+                                                            <h4 style="margin-left: 50px; margin-top: 10px;"><a href="{% url 'MgrsearchviewAddcase' %}">新增</a></h4>
+                                                        </div> 
+                                                        <div>                                                            
+                                                            <h4 style="margin-left: 50px; margin-top: 10px;"><a href="{% url 'MgrsearchviewUpdatecase' %}">修改</a></h4>
+                                                        </div>
                                                     </div>
+                                                     
                                                     <div style=" padding: 60px;">
                                                         <div style="display:flex;">
                                                             <!-- 傳入的參數要知道是哪個國家 -->
@@ -82,11 +89,11 @@
                                                         <div style="display: flex;">
                                                             <!-- <h4 style="margin-left: 15px;"><a href="MgrsearchviewAddcase_people.html">新增</a><h4> -->
                                                             <!-- <h4 style="margin-left: 15px;"><a href="MgrsearchviewUpdate_people.html">修改</a></h4> -->
-                                                            <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewAddcase' %}">新增</a></h4>
+                                                            <!-- <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewAddcase' %}">新增</a></h4>
                                                             <h4 style="margin-left: 15px;"><a href="{% url 'MgrsearchviewUpdatecase' %}">修改</a></h4>
                                                             <h4 style="margin-left: 105px;"><a href="MgrsearchviewAddcase_age.html">新增/修改</a></h4>
                                                             <h4 style="margin-left: 100px;"><a href="MgrsearchviewAddcase_gender.html">新增/修改</a></h4>
-                                                            <h4 style="margin-left: 90px;"><a href="MgrsearchviewAddcase_type.html">新增/修改</a></h4>
+                                                            <h4 style="margin-left: 90px;"><a href="MgrsearchviewAddcase_type.html">新增/修改</a></h4> -->
 
 
                                                                                                                   

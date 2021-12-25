@@ -26,7 +26,7 @@
                     <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
 					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
 					<!-- 顯示登入資訊 -->
-					<span id="loginSession"></span>
+					<li><span class="navspan" id="loginSession"></span></li>
 
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
                                 <form action="" onsubmit="doSearch(this); return false" onreset=""> {% csrf_token %}                                      
                                     <input type="search" class="search"  placeholder="搜尋毒品" id="searchDrug">
                                     <button type="submit">搜尋</button>
-                                    <button type="reset" onclick="getDrugList()" >清除</button>
+                                    <button type="reset" onclick="getDrugList()" style="margin-top: 10px;" >清除</button>
                                 </form>
 
                                 </header>

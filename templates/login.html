@@ -23,13 +23,13 @@
                             
                             <h3 > Login</h3>
                   
-                            <form method="post" action=""> {% csrf_token %}
+                            <form method="post" action="" onsubmit="login(this); return false"> {% csrf_token %}
                               <input class="input_login" id="username" name="username" placeholder="帳號" required>
                               <div class="tab"></div>
                               <input type="password" class="input_login"  id="password" name="password" placeholder="密碼" required>
                               <div class="tab"></div>
                               <!-- <input class="submitlogin" type="submit" value="登入" onclick="location.href='frontpage.html'"> -->
-                              <input class="submitlogin" type="submit" value="登入" onclick="login()" id="loginbtn">
+                              <input class="submitlogin" type="submit" value="登入" id="loginbtn">
                               <!-- <<form action="" method="POST">
                                 {% csrf_token %}
                                 {{ form }}

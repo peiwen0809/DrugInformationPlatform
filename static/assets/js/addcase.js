@@ -6,6 +6,7 @@
 
 // 新增欄位
 function createCol() {
+    document.getElementById("yearBox").value = ""
     getTabelCol("gender", "t1")  // 性別
     getTabelCol("age", "t2") // 年齡層
     getDrugList()  // 毒品種類
@@ -52,6 +53,7 @@ function getDrugList() {
 // 呼叫完API後依序將欄位名稱放入表格
 function displayNewCol(tableId, data) {
     var inner = document.getElementById(tableId);  // 要寫入的table
+    inner.innerHTML = "";
     // inner.innerHTML='';
     var label = "";
     var idName = "";  // 211222-001 新增一欄ID，為tag在資料庫裡的ID，為了更新的時候可以指定要修改哪一筆資料

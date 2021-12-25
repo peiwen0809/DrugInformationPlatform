@@ -8,7 +8,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
         </head>
-        <body class="is-preload" onload="getCountryYears('getCountryYearNum')">
+        <body class="is-preload" onload="getCountryYears('getCountryYearNum');loadSelectedCountry()">
             <div id="page-wrapper">
     
     
@@ -28,7 +28,7 @@
                         <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
                         <li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
                         <!-- 顯示登入資訊 -->
-                        <span id="loginSession"></span>
+                        <li><span class="navspan" id="loginSession"></span></li>
                     </ul>
                 </nav>
     

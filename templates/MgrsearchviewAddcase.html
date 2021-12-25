@@ -8,7 +8,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
         </head>
-        <body class="is-preload" onload="createCol()" id="addcase">
+        <body class="is-preload" onload="createCol();loadSelectedCountry()" id="addcase">
             <div id="page-wrapper">
     
     
@@ -28,7 +28,7 @@
                         <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
                         <li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
                         <!-- 顯示登入資訊 -->
-                        <span id="loginSession"></span>
+                        <li><span class="navspan" id="loginSession"></span></li>
                     </ul>
                 </nav>
     
@@ -46,14 +46,14 @@
                                                     <header><h2>統計資料新增</h2></header>
                                                     <div style="display: flex;">
                                                         <div style="margin-right: 8px; margin-top: 5px;"><h4>國家</h4></div>
-                                                        <div>  <select class="addselect" onclick="setCountrySession(value);getCountryYears('getCountryYearNum')" id="selectBox">
+                                                        <div>  <select class="addselect" onchange="setCountrySession(value);createCol()" id="selectBox">
                                                                 <option value="0">台灣</option>
                                                                 <option value="1">新加坡</option>
                                                                 <option value="2">馬來西亞</option>
                                                             </select>
                                                         </div> 
                                                         <div style="margin-left: 100px; margin-right: 8px; margin-top: 5px;"><h4>年份</h4></div>
-                                                        <div><input class="addsearch1" style="margin-top: 0px;" type="text" maxlength="4" id="yearBox" required></div>
+                                                        <div><input class="addsearch1" style="margin-top: 0px;" type="number" max="9999" min="1" id="yearBox" required></div>
                                                         <!-- <div>  <select class="addselect" onchange="setCountrySession(value);changeImg()" id="selectBox"> -->
                                                         <!-- <div>  <select class="addselect" onchange="totalTable(value)" id="yearBox">
 

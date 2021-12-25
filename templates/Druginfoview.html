@@ -26,7 +26,7 @@
                     <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
 					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
 					<!-- 顯示登入資訊 -->
-					<span id="loginSession"></span>
+					<li><span class="navspan" id="loginSession"></span></li>
                 </ul>
             </nav>
 
@@ -41,7 +41,11 @@
                             <!-- 為了js在取圖片目錄時的來源，不顯示 -->
                             <ul><img id="drugImg" src="{% static 'images/weed1.jpeg' %}" style="display:none"></ul>
                             <article class="box page-content" id="druginfoview">
-                                <input type="button" onclick="history.back()" value="回上一頁">
+                                <header>
+                                    <h2>毒品詳細資訊</h2>
+                                    <input type="button" onclick="history.back()" value="回上一頁">
+                                </header>
+                                
                                 
 
                             </article>

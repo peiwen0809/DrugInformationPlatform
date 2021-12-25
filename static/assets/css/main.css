@@ -3244,6 +3244,10 @@ input, select, textarea {
 	border:solid 1px #ccc;
 	border-radius: 5px;
   }
+  .navspan{
+	margin-right: -300px;
+  }
+  
   /*druglist*/
   .text_druglist{
 

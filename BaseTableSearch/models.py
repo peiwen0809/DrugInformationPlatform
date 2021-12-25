@@ -12,7 +12,7 @@ class AgeTableSearch(models.Model):
     # 取得年齡層欄位
     def getTable(**kwargs):
         table = kwargs.get('table')
-        result = AgeTableSearch.objects.raw('SELECT * FROM age WHERE age_id BETWEEN 6 AND 12')
+        result = AgeTableSearch.objects.raw('SELECT * FROM age WHERE age_id IN (6,8,9,10,11,13,14)')
         return result
 
 

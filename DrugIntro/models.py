@@ -6,7 +6,7 @@ class DrugIntro(models.Model):
     drug_id = models.IntegerField(primary_key=True)
     ch_name = models.TextField()
     en_name = models.TextField()
-    desc = models.TextField()
+    drug_intro = models.TextField()
     img1 = models.TextField()
     img2 = models.TextField()
     img3 = models.TextField()

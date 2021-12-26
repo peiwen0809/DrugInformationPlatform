@@ -64,12 +64,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
         year = request.data['year']
         num = request.data['num']
         result = DrugCountry.countryYearNum(country_id=country_id, year=year, num=num)
-        if result:
+        if result == True:
             return JsonResponse({"success": True, "desc": "Successful!"})
-        else:
+        elif result == False:
             return JsonResponse({"success": False, "desc": "Error"})
-
-
+        else:
+            return JsonResponse({"success": False, "desc": result})
 
     # http://127.0.0.1:8000/api/SearchManage/insertCountryYearNum/
     # 新增總人數
@@ -79,10 +79,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
         year = request.data['year']
         num = request.data['num']
         result = DrugCountry.createCountryYearNum(country_id=country_id, year=year, num=num)
-        if result:
+        if result == True:
             return JsonResponse({"success": True, "desc": "Successful!"})
-        else:
+        elif result == False:
             return JsonResponse({"success": False, "desc": "Error"})
+        else:
+            return JsonResponse({"success": False, "desc": result})
 
     # http://127.0.0.1:8000/api/SearchManage/getAgeNum/
     # 改一個國家每年的吸毒人數，依年齡層區分
@@ -96,11 +98,16 @@ class SearchManageViewSet(viewsets.ModelViewSet):
         for a in data:
             age_id = a['age_id']
             num = a['num']
+            print(a)
             result = DrugAge.ageNum(country_id=country_id, year=year, num=num, age_id=age_id)
-            if not result:
+            print(result)
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
-
 
     # http://127.0.0.1:8000/api/SearchManage/insertAgeNum/
     # 新增年齡人數
@@ -113,8 +120,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             age_id = a['age_id']
             num = a['num']
             result = DrugAge.createAgeNum(country_id=country_id, year=year, num=num, age_id=age_id)
-            if not result:
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
 
     # http://127.0.0.1:8000/api/SearchManage/getGenderNum/
@@ -130,8 +141,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             gender_id = b['gender_id']
             num = b['num']
             result = DrugGender.genderNum(country_id=country_id, year=year, num=num, gender_id=gender_id)
-            if not result:
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
 
     # http://127.0.0.1:8000/api/SearchManage/insertGenderNum/
@@ -145,8 +160,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             gender_id = b['gender_id']
             num = b['num']
             result = DrugGender.createGenderNum(country_id=country_id, year=year, num=num, gender_id=gender_id)
-            if not result:
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
 
     # http://127.0.0.1:8000/api/SearchManage/getDrugTypeNum/
@@ -162,8 +181,12 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             drug_id = c['drug_id']
             num = c['num']
             result = DrugType.drugTypeNum(country_id=country_id, year=year, num=num, drug_id=drug_id)
-            if not result:
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
 
     # http://127.0.0.1:8000/api/SearchManage/insertDrugTypeNum/
@@ -177,6 +200,10 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             drug_id = c['drug_id']
             num = c['num']
             result = DrugType.createDrugTypeNum(country_id=country_id, year=year, num=num, drug_id=drug_id)
-            if not result:
+            if result == False:
                 return JsonResponse({"success": False, "desc": "Error"})
+            elif result == True:
+                continue
+            else:
+                return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})

@@ -24,7 +24,11 @@ class DrugCountry(models.Model):
             # a = m.DrugCountry.objects.get(country_id=country_id, year=year)
             # a.num = num
             # a.save()
-            m.DrugCountry.objects.filter(country_id=country_id, year=year).update(num=num)
+            post = m.DrugCountry.objects.filter(country_id=country_id, year=year)
+            if not post:
+                return "資料不存在，請重新輸入"
+            else:
+                post.update(num=num)
         except m.DrugCountry.DoesNotExist:
             return False
         else:
@@ -35,7 +39,10 @@ class DrugCountry(models.Model):
         year = kwargs.get('year')
         num = kwargs.get('num')
         try:
-            ins = m.DrugCountry.objects.create(country_id=country_id, year=year, num=num)
+            ins = m.DrugCountry.objects.filter(country_id=country_id, year=year)
+            if ins:
+                return "資料已經存在，請重新輸入"
+            m.DrugCountry.objects.create(country_id=country_id, year=year, num=num)
             # ins.save()
         except Exception as e:
             print(e)
@@ -66,7 +73,11 @@ class DrugAge(models.Model):
             # a = m.DrugAge.objects.get(age_id=age_id, country_id=country_id, year=year)
             # a.num = num
             # a.save()
-            m.DrugAge.objects.filter(country_id=country_id, year=year, age_id=age_id).update(num=num)
+            post = m.DrugAge.objects.filter(country_id=country_id, year=year, age_id=age_id)
+            print(post)
+            if not post:
+                return "資料不存在，請重新輸入"
+            post.update(num=num)
         except m.DrugAge.DoesNotExist:
             return False
         return True
@@ -77,7 +88,10 @@ class DrugAge(models.Model):
         year = kwargs.get('year')
         num = kwargs.get('num')
         try:
-            ins = m.DrugAge.objects.create(age_id=age_id, country_id=country_id, year=year, num=num)
+            ins = m.DrugAge.objects.filter(country_id=country_id, year=year, age_id=age_id)
+            if ins:
+                return "資料已經存在，請重新輸入!"
+            m.DrugAge.objects.create(age_id=age_id, country_id=country_id, year=year, num=num)
             # ins.save()
         except Exception:
             return False
@@ -106,7 +120,10 @@ class DrugGender(models.Model):
             # a = m.DrugGender.objects.get(country_id=country_id, year=year, gender_id=gender_id)
             # a.num = num
             # a.save()
-            m.DrugGender.objects.filter(country_id=country_id, year=year, gender_id=gender_id).update(num=num)
+            post = m.DrugGender.objects.filter(country_id=country_id, year=year, gender_id=gender_id)
+            if not post:
+                return "資料不存在，請重新輸入!"
+            post.update(num=num)
         except m.DrugGender.DoesNotExist:
             return False
         return True
@@ -117,7 +134,10 @@ class DrugGender(models.Model):
         year = kwargs.get('year')
         num = kwargs.get('num')
         try:
-            ins = m.DrugGender.objects.create(country_id=country_id, year=year, gender_id=gender_id, num=num)
+            ins = m.DrugGender.objects.filter(country_id=country_id, year=year, gender_id=gender_id)
+            if ins:
+                return "資料已經存在，請重新輸入!"
+            m.DrugGender.objects.create(country_id=country_id, year=year, gender_id=gender_id, num=num)
             # ins.save()
         except Exception:
             return False
@@ -146,7 +166,10 @@ class DrugType(models.Model):
             # a = m.DrugType.objects.get(country_id=country_id, year=year, drug_id=drug_id)
             # a.num = num
             # a.save()
-            m.DrugType.objects.filter(country_id=country_id, year=year, drug_id=drug_id).update(num=num)
+            post = m.DrugType.objects.filter(country_id=country_id, year=year, drug_id=drug_id)
+            if not post:
+                return "資料不存在，請重新輸入!"
+            post.update(num=num)
         except m.DrugType.DoesNotExist:
             return False
         return True
@@ -157,7 +180,10 @@ class DrugType(models.Model):
         year = kwargs.get('year')
         num = kwargs.get('num')
         try:
-            ins = m.DrugType.objects.create(country_id=country_id, year=year, drug_id=drug_id, num=num)
+            ins = m.DrugType.objects.filter(country_id=country_id, year=year, drug_id=drug_id)
+            if ins:
+                return "資料已經存在，請重新輸入!"
+            m.DrugType.objects.create(country_id=country_id, year=year, drug_id=drug_id, num=num)
             # ins.save()
         except Exception:
             return False

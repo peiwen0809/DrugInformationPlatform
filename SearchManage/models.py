@@ -188,3 +188,23 @@ class DrugType(models.Model):
         except Exception:
             return False
         return True
+
+# 211226-001 刪除資料
+class DelObject(models.Model):
+    def delData(**kwargs):
+        country_id = kwargs.get('country_id')
+        year = kwargs.get('year')
+        table = kwargs.get('table')
+        tableObject = m.DrugCountry
+        if table == "age_num":
+            tableObject = m.DrugAge
+        elif table == "gender_num":
+            tableObject = m.DrugGender
+        elif table == "drug_num":
+            tableObject = m.DrugType
+        item = tableObject.objects.filter(country_id=country_id, year=year)
+        if item:
+            item.delete()
+        else:
+            return False, "資料不存在"
+        return True, ""

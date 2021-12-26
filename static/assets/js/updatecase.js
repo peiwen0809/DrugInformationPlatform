@@ -152,6 +152,7 @@ function display(tableId,labelArr,numArr,idArr) {
 function modify() {
     var totalNum = sumTotal()  // 檢查人數
     if (totalNum != -1) {  // -1表示人數加總不相同，所以不更新
+        spinner.removeAttribute('hidden');  // loading畫面
         modifyData("CountryYearNum", totalNum)  // 更新總人數
         modifyData("GenderNum", totalNum)  // 更新性別人數
         modifyData("AgeNum", totalNum)  // 更新年齡層人數
@@ -258,14 +259,49 @@ function modifyData(name, total) {
                 if (successCnt == 4) {
                     alert("新增/更新 成功!")
                     successCnt = 0;
+                    window.location.reload()
+                    spinner.setAttribute('hidden', '');  // 解除loading
                 }
             }else {
                 alert(alertDesc+"新增/修改失敗，失敗描述："+myJson['desc'])
                 successCnt = 0;
+                window.location.reload()
+                spinner.setAttribute('hidden', '');  // 解除loading
             }
         });
     }catch(e) {
         console.log(e)
         
+    }
+}
+
+const spinner = document.getElementById("spinner");
+function delData(){
+    var country_id = sessionStorage.getItem('country_id')
+    var year = document.getElementById('yearBox').value
+    var dialog = confirm("確定要刪除"+year+"年的資料? 刪除後無法復原");
+    if (dialog) {
+        spinner.removeAttribute('hidden');  // loading畫面
+        var requestJson = {"country_id":country_id, "year":year}
+        var url = "/DIP/SearchManage/delCountryYearData/"
+            fetch(url,
+                {
+                    method:'POST',
+                    body:JSON.stringify(requestJson),
+                    headers:{'Content-Type':'application/json'}
+                })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                console.log(myJson)
+                if (myJson['success']) {
+                    alert("刪除成功!")
+                }else {
+                    alert("刪除失敗，失敗描述："+myJson['desc'])
+                }
+                spinner.setAttribute('hidden', '');  // 解除loading
+                window.location.reload()
+            });
     }
 }

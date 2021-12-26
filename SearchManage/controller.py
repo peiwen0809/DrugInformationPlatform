@@ -207,3 +207,15 @@ class SearchManageViewSet(viewsets.ModelViewSet):
             else:
                 return JsonResponse({"success": False, "desc": result})
         return JsonResponse({"success": True, "desc": "Successful!"})
+
+    # 211226-001 新增刪除資料的API {"country_id:"0", "year":"2020}
+    @action(detail=False, methods=['post'])
+    def delCountryYearData(self, request):
+        country_id = request.data['country_id']
+        year = request.data['year']
+        tableArr = ["country_year_num", "age_num", "gender_num", "drug_num"]
+        for table in tableArr:
+            result, desc = DelObject.delData(country_id=country_id, year=year, table=table)
+            if not result:
+                return JsonResponse({"success": result, "desc": desc}, safe=False)
+        return JsonResponse({"success": True, "desc": ""}, safe=False)

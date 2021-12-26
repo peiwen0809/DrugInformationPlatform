@@ -10,8 +10,9 @@
         </head>
         <body class="is-preload" onload="getCountryYears('getCountryYearNum');loadSelectedCountry()">
             <div id="page-wrapper">
-    
-    
+                <!-- loading畫面 -->
+                <div hidden id="spinner" class="spinner"></div>
+                
     
                 <!-- Nav -->
                 <nav id="nav">
@@ -58,6 +59,9 @@
 
                                                             </select>
                                                         </div>  
+                                                        <div>   
+                                                            <h4 style="margin-left: 50px; margin-top: 10px;"><a href="#" onclick="delData()">刪除</a></h4>                                                        
+                                                        </div>
                                                     </div>
                                                     
                                                     <div style=" padding-top: 60px;">

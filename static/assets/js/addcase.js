@@ -80,6 +80,19 @@ function displayNewCol(tableId, data) {
     // 最後一列的合計值為0
     var totalHtml = '<tr><td align="center">合計</td><td id='+tableId+'total align="center">0</td></tr>'
     inner.innerHTML+=totalHtml;
+
+    // 將table資料筆數存在公共變數
+    // 因為每次改年份要重新抓人數資料，會將表格所有資料清除，所以要重新補上表頭
+    if (tableId == 't1') {
+        inner.innerHTML = '<th align="center">性別</th><th align="center">人數</th>' + inner.innerHTML
+        // genderCount = labelArr.length;
+    } else if (tableId == 't2') {
+        inner.innerHTML = '<th align="center">年齡層</th><th align="center">人數</th>' + inner.innerHTML
+        // ageCount = labelArr.length;
+    } else {
+        inner.innerHTML = '<th align="center">毒品</th><th align="center">人數</th>' + inner.innerHTML
+        // typeCount = labelArr.length;
+    }
 }
 
 // 新增前要先檢查這個年份是否已經存在

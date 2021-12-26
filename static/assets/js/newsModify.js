@@ -93,6 +93,7 @@ function addNews() {
 
 // 211224-001 爬蟲自動更新新聞資料
 function autoUpdateNews() {
+    spinner.removeAttribute('hidden');  // loading畫面
     var url = '/news/api/autoUpdateNews/';
     fetch(url,
         {
@@ -108,6 +109,7 @@ function autoUpdateNews() {
             }
             else{
                 alert("新聞資料已自動更新")
+                spinner.setAttribute('hidden', '');  // 解除loading
                 window.location.reload()
             }
         })

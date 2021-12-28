@@ -10,11 +10,13 @@ class NewsList(models.Model):
 
   class Meta:
     db_table = "news"  # 211208-001 指定table名稱，不然預設會是APP name_model name
+    verbose_name_plural = " news"
 
 
 # 211224-001 新增爬蟲抓取新聞標題、連結，並寫入資料庫
 import urllib.request as req
 import sqlite3
+from DrugNews import controller
 def autoUpdate():
   src = "https://udn.com/search/tagging/2/%E6%AF%92%E5%93%81"
   request = req.Request(src, headers={
@@ -28,32 +30,52 @@ def autoUpdate():
 
   titles = root.find_all("div", class_="story-list__text")  # 尋找div中，子標籤為"story-list__text"的內容
 
-  con = sqlite3.connect('drugcase.db')  # 連線到資料庫
-
-  cur = con.cursor()  # 建立cursor物件，為編輯資料庫物件
-
-  dbnews = cur.execute("SELECT link FROM news;")
-  dbnewsitem = []
-  dbnewsitem = dbnews.fetchall()
-
-  item = cur.execute("SELECT COUNT(id) FROM news;")
-  itemcount = item.fetchall()[0]  # itenount為資料庫中news的筆數
+  # 211228-001 如果佈署到server的話，用原本的方法會找不到DB，所以改成用django的方法
+  newsall = NewsList.objects.order_by("-id")  # 取出資料庫中所有的新聞資料
+  serializer = controller.News(newsall, many=True)  # 序列化
 
   for titlename in titles:  # 把tiltles中的資料一筆一筆抓出來
+    dupFlag = False  # 用來判斷連結有沒有重複
     if titlename.h2 != None:  # 若新聞未被刪除
-      count = 0  # 計算是否為迴圈的最後一筆新聞
-      for (news,) in dbnewsitem:
-        if titlename.select_one("a").get("href") == news:  # 若抓下來的該筆link存在於資料庫中
-          count += 1
+      for data in serializer.data:  # 一筆一筆比對
+        if titlename.select_one("a").get("href") == data['link']:
+          dupFlag = True
           break
+      if not dupFlag:  # 不相等的話就寫入新的一筆
+        insertSer = controller.News(data={'title':titlename.h2.text, 'link':titlename.select_one("a").get("href")})
+        if insertSer.is_valid():
+          insertSer.save()
         else:
-          count += 1
-          if count == itemcount[0]:  # 如果找完資料庫中裡所有連結了但仍未找到資料庫中有此link
-            cur.execute("""INSERT INTO news (title, link) 
-                      VALUES (?,?)""", (titlename.h2.text, titlename.select_one("a").get("href"),))
-            break
-          continue
+          print(insertSer.errors)
 
-  con.commit()  # 確認並寫入資料庫
 
-  con.close()
+
+  # con = sqlite3.connect('drugcase.db')  # 連線到資料庫
+  #
+  # cur = con.cursor()  # 建立cursor物件，為編輯資料庫物件
+  #
+  # dbnews = cur.execute("SELECT link FROM news;")
+  # dbnewsitem = []
+  # dbnewsitem = dbnews.fetchall()
+  #
+  # item = cur.execute("SELECT COUNT(id) FROM news;")
+  # itemcount = item.fetchall()[0]  # itenount為資料庫中news的筆數
+  #
+  # for titlename in titles:  # 把tiltles中的資料一筆一筆抓出來
+  #   if titlename.h2 != None:  # 若新聞未被刪除
+  #     count = 0  # 計算是否為迴圈的最後一筆新聞
+  #     for (news,) in dbnewsitem:
+  #       if titlename.select_one("a").get("href") == news:  # 若抓下來的該筆link存在於資料庫中
+  #         count += 1
+  #         break
+  #       else:
+  #         count += 1
+  #         if count == itemcount[0]:  # 如果找完資料庫中裡所有連結了但仍未找到資料庫中有此link
+  #           cur.execute("""INSERT INTO news (title, link)
+  #                     VALUES (?,?)""", (titlename.h2.text, titlename.select_one("a").get("href"),))
+  #           break
+  #         continue
+  #
+  # con.commit()  # 確認並寫入資料庫
+  #
+  # con.close()

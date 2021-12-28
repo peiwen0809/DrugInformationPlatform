@@ -13,6 +13,7 @@ class DrugIntro(models.Model):
 
     class Meta:
         db_table = "drug_type"
+        verbose_name_plural = " drug_type"
 
     # 取得毒品詳細資訊
     def drugInfo(**kwargs):

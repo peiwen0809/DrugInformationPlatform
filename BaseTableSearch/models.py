@@ -8,11 +8,12 @@ class AgeTableSearch(models.Model):
 
     class Meta:
         db_table = "age"
+        verbose_name_plural = " age"
 
     # 取得年齡層欄位
     def getTable(**kwargs):
         table = kwargs.get('table')
-        result = AgeTableSearch.objects.raw('SELECT * FROM age WHERE age_id IN (6,8,9,10,11,13,14)')
+        result = AgeTableSearch.objects.raw('SELECT * FROM age WHERE age_id IN (6,8,10,11,13,14)')
         return result
 
 
@@ -22,6 +23,7 @@ class GenderTableSearch(models.Model):
 
     class Meta:
         db_table = "gender"
+        verbose_name_plural = " gender"
 
     # 取得性別欄位
     def getTable(**kwargs):

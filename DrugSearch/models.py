@@ -8,9 +8,11 @@ class DrugCountry(models.Model):
     year = models.IntegerField()
     num = models.IntegerField()
 
+
     class Meta:
         unique_together = (('country_id', 'year'),)
         db_table = "country_year_num"
+        verbose_name_plural = " country_year_num"
 
     # 從表中查詢一個國家每年的吸毒人數
     def countryYearNum(**kwargs):
@@ -30,6 +32,7 @@ class DrugAge(models.Model):
     class Meta:
         unique_together = (('country_id', 'year','age_id'),)
         db_table = "age_num"
+        verbose_name_plural = " age_num"
 
     # 從表中查詢一個國家每年的吸毒人數，依性別區分
     def ageNum(**kwargs):
@@ -49,6 +52,7 @@ class DrugGender(models.Model):
     class Meta:
         unique_together = (('country_id', 'year','gender_id'),)
         db_table = "gender_num"
+        verbose_name_plural = " gender_num"
 
     # 從表中查詢一個國家每年的吸毒人數，依性別區分
     def genderNum(**kwargs):
@@ -69,6 +73,7 @@ class DrugType(models.Model):
     class Meta:
         unique_together = (('country_id', 'year','drug_id'),)
         db_table = "drug_num"
+        verbose_name_plural = " drug_num"
 
     # 從表中查詢一個國家每年的吸毒人數，依毒品種類區分
     def drugTypeNum(**kwargs):

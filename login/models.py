@@ -11,3 +11,4 @@ class Admin(models.Model):
 
     class Meta:
         db_table = 'admin'
+        verbose_name_plural = " admin"

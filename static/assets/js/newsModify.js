@@ -109,8 +109,8 @@ function autoUpdateNews() {
             }
             else{
                 alert("新聞資料已自動更新")
-                spinner.setAttribute('hidden', '');  // 解除loading
                 window.location.reload()
             }
+            spinner.setAttribute('hidden', '');  // 解除loading
         })
 }
